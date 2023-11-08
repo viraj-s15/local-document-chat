@@ -16,7 +16,7 @@ I really like the original project and but the last commit on it was 2 months ag
 - Python Dependency issues
 - Kubernetes deployment not working properly
 - Uploading certain large pdfs caused issues
-- I wanted it to integrate with supabase
+- I wanted it to integrate with pgvector(work in progress)
 
 I will not be maintaining this so use it if youre ready to make some changes
 
@@ -25,4 +25,6 @@ I will not be maintaining this so use it if youre ready to make some changes
 https://github.com/psychic-api/rag-stack#run-locally
 
 Exactly these instructions can be used to run the ui locally.
+
+If you dont want to read this I have modified the `scripts/local/run-dev.sh` script. Run this script after adding your supabase tokens and you should be good to go
 
