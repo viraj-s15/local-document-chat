@@ -28,3 +28,4 @@ Exactly these instructions can be used to run the ui locally.
 
 If you dont want to read this I have modified the `scripts/local/run-dev.sh` script. Run this script after adding your supabase tokens and you should be good to go
 
+And if you dont care about any of that, it is also hosted by some chad here: https://www.chatmyfiles.com/
