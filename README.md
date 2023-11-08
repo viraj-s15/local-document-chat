@@ -1,6 +1,7 @@
 # A Local Document Chat ui
 
 Heavily inspired by https://github.com/psychic-api/rag-stack
+(Its 98% the same UI)
 
 ## Table of Contents
 
