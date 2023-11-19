@@ -17,7 +17,7 @@ I really like the original project and but the last commit on it was 2 months ag
 - Python Dependency issues
 - Kubernetes deployment not working properly
 - Uploading certain large pdfs caused issues
-- I wanted it to integrate with pgvector(work in progress)
+- I wanted it to integrate with pgvector
 
 I will not be maintaining this so use it if youre ready to make some changes
 
