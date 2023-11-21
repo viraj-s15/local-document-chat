@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 
-function useLocalStorage(key: string, initialValue: any) {
-  const [storedValue, setStoredValue] = useState(() => {
+type SetValue<T> = (value: T | ((val: T) => T)) => void;
+type UseLocalStorage<T> = [T, SetValue<T>];
+
+function useLocalStorage<T>(key: string, initialValue: T): UseLocalStorage<T> {
+  const [storedValue, setStoredValue] = useState<T>(() => {
     try {
-      const item = window.localStorage.getItem(key);
+      const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       console.error("Error reading from localStorage:", error);
@@ -11,21 +14,31 @@ function useLocalStorage(key: string, initialValue: any) {
     }
   });
 
-  const setValue = (value: any) => {
+  const setValue: SetValue<T> = (value) => {
     try {
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      if (valueToStore !== storedValue) {
+        localStorage.setItem(key, JSON.stringify(valueToStore));
+      }
     } catch (error) {
       console.error("Error writing to localStorage:", error);
     }
   };
 
   useEffect(() => {
-    const handleStorageChange = (e: any) => {
+    if (!localStorage) {
+      console.error("localStorage is not available");
+      return;
+    }
+
+    const handleStorageChange = (e: StorageEvent) => {
       if (e.key === key) {
-        setStoredValue(JSON.parse(e.newValue));
+        try {
+          setStoredValue(JSON.parse(e.newValue!));
+        } catch (error) {
+          console.error("Error parsing data from storage:", error);
+        }
       }
     };
 
